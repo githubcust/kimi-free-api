@@ -1,27 +1,31 @@
 {
-    "builds": [
-        {
-            "src": "./dist/*.html",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "./dist/index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/",
-            "dest": "/dist/welcome.html"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/dist",
-            "headers": {
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-                "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Content-Type, Authorization"
-            }
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "public/welcome.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/v1/(.*)",         // 你的API接口全部走Node.js
+      "dest": "dist/index.js"
+    },
+    {
+      "src": "/api/(.*)",        // 兼容/api前缀
+      "dest": "dist/index.js"
+    },
+    {
+      "src": "/welcome.html",    // welcome页面静态输出
+      "dest": "public/welcome.html"
+    },
+    {
+      "src": "/",                // 主页跳转到welcome
+      "dest": "public/welcome.html"
+    }
+  ]
 }
