@@ -1,31 +1,32 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/welcome.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/v1/(.*)",         // 你的API接口全部走Node.js
-      "dest": "dist/index.js"
-    },
-    {
-      "src": "/api/(.*)",        // 兼容/api前缀
-      "dest": "dist/index.js"
-    },
-    {
-      "src": "/welcome.html",    // welcome页面静态输出
-      "dest": "public/welcome.html"
-    },
-    {
-      "src": "/",                // 主页跳转到welcome
-      "dest": "public/welcome.html"
-    }
-  ]
-}
+    "version": 2,
+    "builds": [
+      {
+        "src": "dist/index.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "public/welcome.html",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/v1/(.*)",
+        "dest": "dist/index.js"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "dist/index.js"
+      },
+      {
+        "src": "/welcome.html",
+        "dest": "public/welcome.html"
+      },
+      {
+        "src": "/",
+        "dest": "public/welcome.html"
+      }
+    ]
+  }
+  
